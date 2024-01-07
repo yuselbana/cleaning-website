@@ -9,11 +9,12 @@ import format from "date-fns/format";
 import {FormControl} from "@rewind-ui/core";
 import { isFriday } from "date-fns";
 import { ArrowLeftIcon,ArrowRightIcon } from "@heroicons/react/24/solid";
-
+import toast from "react-hot-toast";
 
 
 
 const CalendarPage  = () => {
+  
   
     const currentDate = new Date();
     const yesterday = new Date()
@@ -58,7 +59,6 @@ const CalendarPage  = () => {
         const [form,setForm] = useState<boolean>(false)
 
     
-     
 
 
 
@@ -87,15 +87,24 @@ const CalendarPage  = () => {
       useEffect(() => {
         if(date) {
           const [dayOTW, month, day ,year] = date.split(/[ ]/)
+
           if(parseInt(day,10) == currentDate.getDate()) {
             setMapTimes(availableTimes)
-          }else {
+          }else{
             setMapTimes(allTimes)
           }
+          if(dayOTW == "Fri" || dayOTW == "Sat" || dayOTW == "Sun") {
+            setMapTimes([])
+          }
+
         }else {
           setDate(formattedDate)
         }
       }, [date]);
+
+     
+
+    
 
       
 
@@ -111,11 +120,11 @@ const CalendarPage  = () => {
           
           <div className="min-h-screen xl:h-screen grid grid-rows-5 xl:grid-rows-4 xl:grid-cols-3  place-items-center p-4 bg-greyBlack w-full text-white ">
        
-            <Link href='/' className="row-start-1 row-end-2 xl:col-start-1 xl:col-end-2"><span ><ArrowLeftIcon className="w-12 h-12 text-white"/> </span></Link>
+            <Link href='/' className="row-start-1 row-end-2 xl:col-start-1 xl:col-end-2 "><span ><ArrowLeftIcon className="w-12 h-12 text-white"/> </span></Link>
 
           <div className="flex flex-col text-center items-center justify-center gap-4 row-start-2 row-end-3 xl:row-start-1 xl:row-end-2 xl:col-start-1 xl:col-end-4 " >
-              <h1 className="text-3xl xl:text-5xl font-semibold">Initial Design and Pricing Estimate</h1>
-              <h3>Check out our availability and book the date and time that works for you</h3>
+              <h1 className="text-3xl xl:text-5xl font-semibold">scheduled clean: get a quote now</h1>
+              <h3>check out our availability and book the date and time that works for you</h3>
           </div>
   
   
@@ -140,14 +149,14 @@ const CalendarPage  = () => {
           <p className="font-semibold text-2xl">date:   
        
            
-           <span className="text-xl "> {date} at {time}</span>
+           <motion.span layoutId="dateAndTime" className="text-xl text-brightOrange "> {date} at {time}</motion.span>
             </p>
          
           
         
           </div>
   
-       <button onClick={()=>{setForm(!form)}}  className="self-center xl:self-end  p-4  "><ArrowRightIcon className="text-white h-12  w-12"  /></button>
+       <button onClick={()=>{(date && time) ? setForm(!form) : toast.error("please pick a date and time") }}  className="self-center xl:self-end  p-4  "><ArrowRightIcon className="text-white h-12  w-12"  /></button>
          
           </div>
         </div>

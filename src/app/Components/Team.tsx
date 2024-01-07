@@ -7,6 +7,7 @@ import {motion,useInView} from 'framer-motion'
 import abd from '../../../public/portraits/abd.jpg'
 import nolan from '../../../public/portraits/nolan.jpg'
 import { MutableRefObject } from "react";
+import Testimonials from "./Testimonials";
 const playfair = Playfair_Display_SC({subsets:['latin'], weight:['400']})
 
 
@@ -20,7 +21,7 @@ const TeamMemberComponent = ({imgSrc,name,description}: {imgSrc:StaticImageData,
        {intro ? 
        
        
-       <p onClick={()=>{setIntro(!intro)}} className="w-96 h-full leading-12  self-center flex items-center justify-center text-center cursor-pointer">{description}</p>
+       <p onClick={()=>{setIntro(!intro)}} className="w-96 h-full leading-12 self-center flex items-center justify-center text-center cursor-pointer">{description}</p>
        
        : 
        
@@ -46,24 +47,39 @@ const TeamMemberComponent = ({imgSrc,name,description}: {imgSrc:StaticImageData,
 
 
 
-const Team = ({darkTransition,container}: {darkTransition:MutableRefObject<HTMLDivElement | null>,container:{}}) => {
-  
+const Team = () => {
+   const [testimonials,setTestimonials] = useState<boolean>(false)
+   const Circle = ({title}: {title?:string}) => {
     return (
-    <motion.div  variants={container} animate="animate"  className="grid grid-rows-5 lg:h-screenw-full  text-white place-items-center ">
+        <motion.div
+   
+        layoutId="testimonials"
+        onClick={()=> {setTestimonials(!testimonials)}} 
+        className="rounded-full h-48 w-48 cursor-pointer bg-white text-black flex items-center justify-center  justify-self-center ">{title}</motion.div>
+    )
+}
+    return (
+       < >
+        {testimonials ? 
+        
+        <Testimonials  testimonials={testimonials} setTestimonials={setTestimonials}/>
+        :
+
+        <div id="team" className="grid grid-rows-6 min-h-screen lg:h-screen w-full  place-items-center ">
         <div className="flex items-center justify-center gap-4 row-start-1 row-end-2">
         <span>(03)</span>
         <p>the team</p>
         </div>
-        <div ref={darkTransition}  className="row-start-2 row-end-5 flex flex-col lg:flex-row justify-center gap-24 items-center w-full h-full ">
+        <div      className="row-start-2 row-end-6 flex flex-col lg:flex-row justify-center gap-24 items-center w-full h-full ">
         <TeamMemberComponent imgSrc={nolan} name={"NOLAN JONES"} description={"Hello! My name is Nolan Jones. I'm 18 years old. I have lived in Marlboro almost all my life and I recently started this company with my partner Abdallah Dewedar. Hard Working parents shouldn't have to come home after a long day at work to clean their house. I started by relieving my parents of coming home to a messy house by cleaning and disinfecting it.  After our work we realized that we had a gift for cleaning. Cleaning is an art form and has to be worked on and that's what we're focusing on. "}/>
+        <Circle  title={"see testimonials"}/>
         <TeamMemberComponent imgSrc={abd} name={"ABDALLAH DEWEDAR"} description={" My name is Abdallah Dewedar. I am 18 years old,  in my first year of college and I reside in Marlboro New Jersey as well. Our cleaning business is something I am passionate about and will continue to work hard and make your homes as beautiful and polished as they looked the first day you moved in. No amount of mess, smell or stain is too much for my partner and I, we will change the way you see and feel in your home forever, and hope to keep us in service and watch your home transfer every single time. "}/>
         </div>
-        <div  className="row-start-5 row-end-6 text-center w-3/5">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
+       
 
-    </motion.div>  
+    </div>  
+        }
+        </>
     );
 }
  

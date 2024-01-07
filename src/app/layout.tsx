@@ -1,9 +1,9 @@
 
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { Poppins } from 'next/font/google'
 import './globals.css'
-
+import { AnimatePresence } from 'framer-motion'
+import { Toaster } from 'react-hot-toast'
 
 const poppins = Poppins({ subsets: ['latin'] ,weight:['400','700',]})
 
@@ -22,6 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <Toaster
+        toastOptions={{
+          style: {
+            backgroundColor:"#1F1F1F",
+            color:"#FFFFFF"
+          },
+          duration:2500
+        }}
+         position='top-center'/>
         {children}
         </body>
     </html>

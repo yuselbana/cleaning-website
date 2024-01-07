@@ -64,7 +64,7 @@ const Services = ({container}:{container:{}}) => {
     }
     
     return ( 
-        <motion.div variants={container} animate="animate" className="flex flex-col items-center gap-8  justify-center xl:grid xl:grid-rows-9 xl:grid-cols-5 min-h-screen xl:h-screen  xl:p-20">
+        <motion.div id="services" variants={container} animate="animate" className="flex flex-col items-center gap-8  justify-center xl:grid xl:grid-rows-9 xl:grid-cols-5 min-h-screen xl:h-[120vh]  xl:p-20">
             <div className="xl:col-start-1 xl:row-start-2 w-full flex justify-center xl:justify-start items-center gap-2">
                 <span> (01)</span>
                 <p className="text-xl lg:text-2xl">services</p>
@@ -88,7 +88,7 @@ const Services = ({container}:{container:{}}) => {
             <div 
             className="xl:row-start-2 xl:row-end-5 xl:col-start-4 xl:col-end-6 h-48  xl:h-full w-full flex-grow  xl:inline relative rounded-xl overflow-hidden">
                 {/* <span className="text-brightOrange">(i)</span> */}
-                <Image alt="Service Images" className="object-cover xl:object-fill" fill src={service.image}/>
+                <Image alt="Service Images" className="object-cover" fill src={service.image}/>
             </div>
             <Circle/>
             <div className="xl:row-start-6 xl:row-end-9 xl:col-start-3 xl:col-end-9 flex flex-col justify-center items-center text-center xl:text-left xl:items-start gap-16 z-20 ">

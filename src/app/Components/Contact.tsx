@@ -1,10 +1,12 @@
 'use client';
 import Link from "next/link";
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
+import {motion} from 'framer-motion'
+
 const Contact = () => {
     const [calendar,setCalendar ] = useState<boolean>(false)
     return (
-        <div id="contact" className="grid grid-rows-5 lg:h-screen min-h-screen place-items-center bg-greyBlack text-white w-full">
+        <div id="contact"  className="grid grid-rows-5 lg:h-screen min-h-screen place-items-center bg-greyBlack text-white w-full">
 
         <div className="row-start-1 row-end-2 col-start-1 col-end-2 border-b-2 border-b-gray-400 h-full w-full"></div>
         <div className="flex flex-col items-start justify-center lg:w-3/4  row-start-1 row-end-2 col-start-1 col-end-2 ">
@@ -19,7 +21,7 @@ const Contact = () => {
             <h3>000-000-0000</h3>
             <h3>harrypotter@gmail.com</h3>
         </div>
-        <Link href='/contact'> <div className="rounded-full w-48 h-48 lg:w-96 lg:h-96 bg-gray-400 flex items-center justify-center">
+        <Link href='/contact'> <div className="rounded-full w-48 h-48 lg:w-96 lg:h-96 bg-white text-black flex items-center justify-center">
      <p>get a quote</p>
         </div>
         </Link>
