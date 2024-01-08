@@ -14,8 +14,7 @@ import toast from "react-hot-toast";
 
 
 const CalendarPage  = () => {
-  
-  
+ 
     const currentDate = new Date();
     const yesterday = new Date()
     yesterday.setDate(currentDate.getDate()-1)
@@ -118,7 +117,7 @@ const CalendarPage  = () => {
           : 
           
           
-          <div className="min-h-screen xl:h-screen grid grid-rows-5 xl:grid-rows-4 xl:grid-cols-3  place-items-center p-4 bg-greyBlack w-full text-white ">
+          <div className="min-h-screen xl:h-screen grid gap-y-10 xl:gap-y-0 xl:grid-rows-4 xl:grid-cols-3  place-items-center p-4 bg-greyBlack w-full text-white ">
        
             <Link href='/' className="row-start-1 row-end-2 xl:col-start-1 xl:col-end-2 "><span ><ArrowLeftIcon className="w-12 h-12 text-white"/> </span></Link>
 
@@ -128,11 +127,11 @@ const CalendarPage  = () => {
           </div>
   
   
-        <div className=" row-start-3 row-end-6 xl:row-start-2 grid grid-rows-3 gap-y-8  xl:grid-rows-none xl:col-span-3 xl:grid-cols-3  xl:gap-y-0 xl:gap-x-8  ">
-        <Calendar className="bg-white rounded-lg"   minDate={yesterday} disabledWeekends={true}   onChange={(e)=> {setDate(e?.toDateString())}} size="lg" shadow='xl'/>
+        <div className=" row-start-3 row-end-6 xl:row-start-2 grid grid-rows-3 gap-y-8 place-items-center xl:place-items-stretch  xl:grid-rows-none xl:col-span-3 xl:grid-cols-3  xl:gap-y-0 xl:gap-x-8  ">
+        <Calendar className="bg-white rounded-lg place-self-stretch"   minDate={yesterday} disabledWeekends={true}   onChange={(e)=> {setDate(e?.toDateString())}} size="lg" shadow='xl'/>
           
           <div className="grid grid-cols-4 justify-center items-start h-fit gap-4">
-          {mapTimes.length == 0 ?  <h3 className="w-full row-span-full col-span-full text-white">No booking times available, please select a future date.</h3> : 
+          {mapTimes.length == 0 ?  <h3 className="w-full row-span-full col-span-full text-center text-white text-xl xl:text-lg">No booking times available, please select a future date.</h3> : 
           
           mapTimes.map((time,key)=> {
               return (
@@ -147,16 +146,11 @@ const CalendarPage  = () => {
           <div className="flex flex-col justify-start items-center text-center xl:text-left xl:items-start  gap-4 w-full h-full">
           <p className="font-semibold text-2xl">schedule our meeting </p>
           <p className="font-semibold text-2xl">date:   
-       
-           
            <motion.span layoutId="dateAndTime" className="text-xl text-brightOrange "> {date} at {time}</motion.span>
-            </p>
-         
-          
-        
+          </p>
           </div>
   
-       <button onClick={()=>{(date && time) ? setForm(!form) : toast.error("please pick a date and time") }}  className="self-center xl:self-end  p-4  "><ArrowRightIcon className="text-white h-12  w-12"  /></button>
+       <button onClick={()=>{(date && time) ? setForm(!form) : toast.error("please pick a date and time") }}  className="self-center  xl:self-end  p-4  "><ArrowRightIcon className="text-white h-12  w-12"  /></button>
          
           </div>
         </div>
