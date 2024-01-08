@@ -72,7 +72,7 @@ const CalendarPage  = () => {
             return (
                 <motion.div
                 onClick={(e: React.MouseEvent<HTMLDivElement>)=>handleClick({e})}            
-                className={`flex justify-start items-center p-4 border-2  hover:cursor-pointer ${t==time ? "bg-white text-black": "text-white"} `}>
+                className={`flex justify-start items-center p-4 border-2 h-18   hover:cursor-pointer ${t==time ? "bg-white text-black": "text-white"} `}>
                     {t}
                 </motion.div>
             )
