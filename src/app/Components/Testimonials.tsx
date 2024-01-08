@@ -58,7 +58,7 @@ const [testimonialNumber,setTestimonialNumber] =useState<number>(0)
             className="grid grid-rows-8 lg:grid-rows-8 text-center min-h-screen lg:h-screen lg:p-12">
            
             <motion.div className="flex flex-col items-center justify-start gap-8 row-start-2 row-end-6 lg:row-end-8 ">
-                <h1>reviews posted by customers</h1>
+                <h1 className="text-2xl lg:text-3xl">reviews posted by customers</h1>
                 <h3>{ testimonialPeople[testimonialNumber]?.name}</h3>
                 <RowOfStars/>
                 <p className="w-3/4 lg:w-1/2">{testimonialPeople[testimonialNumber]?.desc}</p>
