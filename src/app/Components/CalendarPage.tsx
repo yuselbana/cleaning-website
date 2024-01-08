@@ -93,7 +93,7 @@ const CalendarPage  = () => {
           }else{
             setMapTimes(allTimes)
           }
-          if(dayOTW == "Fri" || dayOTW == "Sat" || dayOTW == "Sun") {
+          if(dayOTW == "Sat" || dayOTW == "Sun") {
             setMapTimes([])
           }
 
@@ -129,7 +129,7 @@ const CalendarPage  = () => {
   
   
         <div className=" row-start-3 row-end-6 xl:row-start-2 grid grid-rows-3 gap-y-8  xl:grid-rows-none xl:col-span-3 xl:grid-cols-3  xl:gap-y-0 xl:gap-x-8  ">
-        <Calendar  className="bg-white rounded-lg"   minDate={yesterday} disabledWeekends={true}   onChange={(e)=> {setDate(e?.toDateString())}} size="lg" shadow='xl'/>
+        <Calendar className="bg-white rounded-lg"   minDate={yesterday} disabledWeekends={true}   onChange={(e)=> {setDate(e?.toDateString())}} size="lg" shadow='xl'/>
           
           <div className="grid grid-cols-4 justify-center items-start h-fit gap-4">
           {mapTimes.length == 0 ?  <h3 className="w-full row-span-full col-span-full text-white">No booking times available, please select a future date.</h3> : 
