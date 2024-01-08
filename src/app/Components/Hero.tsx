@@ -28,8 +28,8 @@ const Hero = () => {
             <Image alt="A Better Home Services Logo"  className="object-contain place-self-center  " src={heroImage}/>
             </div>
           
-            <h1 className=" text-3xl lg:text-5xl">lorem ipsum, ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </h1>
-            <p className="lg:text-xl">lorem ipsum, ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+            <h1 className=" text-3xl lg:text-5xl">transform your living environment with better home services</h1>
+            <p className="lg:text-xl">discover the difference with our reliable and efficient cleaning services, where we tackle dirt and grime so you can enjoy a spotless home or workplace</p>
             <Circle title={"book now"}/>
           
             </div>
