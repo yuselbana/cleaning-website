@@ -21,7 +21,8 @@ import { MutableRefObject } from "react";
    }
   }
     return (
-        <motion.div 
+        <motion.div
+        whileTap={{scale:1.2}}
         ref={ref}
         animate ={{scale: isInView? 1:0.25, transition:{type:"spring",duration:2}, backgroundColor:colorArray[circleColor]}}
         onClick={handleCircleColorAnimation}
@@ -64,9 +65,9 @@ const Services = ({container}:{container:{}}) => {
     }
     
     return ( 
-        <motion.div id="services" variants={container} animate="animate" className="flex flex-col items-center gap-8  justify-center xl:grid xl:grid-rows-9 xl:grid-cols-5 min-h-screen xl:h-[120vh]  xl:p-20">
+        <motion.div id="services" variants={container} animate="animate" className="flex flex-col items-center gap-8  justify-center xl:grid xl:grid-rows-9 xl:grid-cols-5 min-h-screen xl:h-[120vh]  xl:p-20 p-4 lg:p-0">
             <div className="xl:col-start-1 xl:row-start-2 w-full flex justify-center xl:justify-start items-center gap-2">
-                <span> (01)</span>
+                <span> (02)</span>
                 <p className="text-xl lg:text-2xl">services</p>
             </div>
 

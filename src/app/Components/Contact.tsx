@@ -3,8 +3,9 @@ import Link from "next/link";
 import { MutableRefObject, useState } from "react";
 import {motion} from 'framer-motion'
 
+import ClipLoader from "react-spinners/ClipLoader";
 const Contact = () => {
-    const [calendar,setCalendar ] = useState<boolean>(false)
+    const [loading,setLoading ] = useState<boolean>(false)
     return (
         <div id="contact"  className="grid grid-rows-5 lg:h-screen min-h-screen place-items-center bg-greyBlack text-white w-full">
 
@@ -21,10 +22,19 @@ const Contact = () => {
             <h3>000-000-0000</h3>
             <h3>harrypotter@gmail.com</h3>
         </div>
-        <Link href='/contact'> <div className="rounded-full w-48 h-48 lg:w-96 lg:h-96 bg-white text-black flex items-center justify-center">
-     <p>get a quote</p>
-        </div>
-        </Link>
+        
+       {loading ?  
+       <ClipLoader size={40} color={"#EA4F1B"}/>
+    :
+    <Link onClick={()=> {setLoading(!loading)}} href='/contact'>
+    <motion.div whileHover={{scale:1.2}} className="cursor-pointer rounded-full w-48 h-48 lg:w-96 lg:h-96 bg-white text-black flex items-center justify-center">
+ 
+    <p>get a quote</p>
+    
+    </motion.div>
+    </Link>
+    }
+       
 
         </div>
 

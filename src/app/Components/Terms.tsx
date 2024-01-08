@@ -4,8 +4,8 @@ const Terms = ({terms,setTerms} : {terms:boolean, setTerms:React.Dispatch<SetSta
    
 
     return (
-        <div className="fixed w-screen h-screen flex items-center justify-center bg-greyBlack text-white top-0 z-50 overflow-y-auto">
-        <div className="lg:w-3/5 p-8 flex flex-col items-start justify-start text-white lg:p-0 lg:text-left bg-greyBlack gap-8 overflow-y-scroll max-h-full">
+        <div className="fixed w-screen h-screen flex items-center justify-center bg-greyBlack text-white top-0 z-50">
+        <div className="lg:w-3/5 p-8 flex flex-col items-start justify-start text-white lg:p-0 lg:text-left bg-greyBlack gap-8 overflow-y-scroll lg:overflow-hidden max-h-full">
                 <div  className="text-white h-12 w-12 cursor-pointer self-center lg:self-end "><XMarkIcon onClick={()=>{setTerms(!terms); document.body.style.overflowY="auto"}}/></div>
                 <h1 className="self-center font-bold text-xl underline">General Liability Release of Claims</h1>
             <h3>Effective immediately upon execution, In this case if you are the owner of the home or property manager or whomever this pertains to is responsible to lock away and keep all valuable items away 

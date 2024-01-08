@@ -35,6 +35,7 @@ const [testimonialNumber,setTestimonialNumber] =useState<number>(0)
     const Circle = ({title}: {title?:string}) => {
         return (
             <motion.div
+            whileHover={{scale:1.2}}
             layoutId="testimonials"
             onClick={()=> {setTestimonials(!testimonials)}} 
             className="rounded-full h-48 w-48 cursor-pointer   bg-white text-black items-center justify-center flex justify-self-center row-start-6 row-end-8 lg:row-start-8 lg:row-end-9  self-end ">{title}</motion.div>
@@ -54,13 +55,13 @@ const [testimonialNumber,setTestimonialNumber] =useState<number>(0)
         animate={{opacity:1, transition:{type:"spring"}}}
     
         id="team"
-            className="grid grid-rows-8 lg:grid-rows-8 text-center min-h-screen lg:h-screen lg:p-12 bg-greyBlack text-white">
+            className="grid grid-rows-8 lg:grid-rows-8 text-center min-h-screen lg:h-screen lg:p-12">
            
-            <motion.div whileInView={{color:'white'}} viewport={{once:false}} className="flex flex-col items-center justify-start gap-8 row-start-2 row-end-6 lg:row-end-8 ">
+            <motion.div className="flex flex-col items-center justify-start gap-8 row-start-2 row-end-6 lg:row-end-8 ">
                 <h1>reviews posted by customers</h1>
                 <h3>{ testimonialPeople[testimonialNumber]?.name}</h3>
                 <RowOfStars/>
-                <p className="w-1/2">{testimonialPeople[testimonialNumber]?.desc}</p>
+                <p className="w-3/4 lg:w-1/2">{testimonialPeople[testimonialNumber]?.desc}</p>
                 <div className="flex items-center justify-center gap-8">
                     <ArrowLeftIcon onClick={()=>{setTestimonialNumber(testimonialNumber-1)}} className="text-brightOrange h-12 w-12 cursor-pointer"/>
                     <ArrowRightIcon onClick={()=>{setTestimonialNumber(testimonialNumber+1)}} className="text-brightOrange h-12 w-12 cursor-pointer"/>

@@ -9,37 +9,54 @@ import Contact from './Components/Contact';
 import { useScroll,useMotionValueEvent,useTransform,AnimatePresence,motion } from "framer-motion";
 
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
 
 export default function Home() {
 
-
-
-  const ref =useRef(null)
-
-  const { scrollY } = useScroll({
-    target:ref,
-    offset:['start end' , 'end end']
-  })
+  const { scrollY } = useScroll()
  
-  const y = useTransform(scrollY, [0,3000], [0,1])
+  const y = useTransform(scrollY, [0,4000], [0,9])
   const [scroll,setScroll] = useState<number>(y.get())
-
+  const [darkThreshold,setDarkThreshold] = useState<number>(1.1)
+  const [portfolio, setPortfolio]= useState<boolean>(false)
 
 
 
 useMotionValueEvent(y, "change", (latest) => {
   setScroll(latest)
-  console.log(latest)
+  // console.log(latest)
 })
 
 
   const container:{} = {
       animate: {
-       backgroundColor:(scroll >.5) ?  "#1F1F1F" : "#F7F3F0",
-       color: (scroll >.5)? "white" : "black",
+       backgroundColor:(scroll >darkThreshold) ?  "#1F1F1F" : "#F7F3F0",
+       color: (scroll >darkThreshold)? "white" : "black",
        transition: {duration:0.5,ease:"easeIn"}
       }
   }
+
+  useEffect(()=> {
+
+   const {width,height}  = getWindowDimensions()
+
+   if(width>1000) {
+    setDarkThreshold(5)
+
+   } else if( width >600 && width<800) {
+    setDarkThreshold(8.2)
+   }else if(width< 600){
+    setDarkThreshold(7.2)
+   }
+  })
+
+
 
 
 
@@ -51,25 +68,35 @@ return (
 
 
    
-   
-   <NavBar scroll={scroll}/>
-   <Hero />
-   <About/>
-   <Services container={container}/>
+<Hero />
+   {!portfolio && <NavBar scroll={scroll} darkThreshold={darkThreshold}/>}
+
  
+ <About portfolio={portfolio} setPortfolio={setPortfolio}/>
 
 
-  
-  <motion.div  ref={ref}  variants={container} animate="animate">
+
+{!portfolio && 
+
+<>
+<Services container={container}/>
+
+<motion.div variants={container} animate="animate">
 <Team  />
 
-   <Contact />
+ <Contact />
 </motion.div>
+</>
+
+
+}
 
 
 
 
 
+
+ 
   
 
 

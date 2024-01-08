@@ -1,10 +1,20 @@
 'use client';
 import { ArrowLeftIcon,ArrowRightIcon } from "@heroicons/react/24/solid";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 import { Input, Select } from "@rewind-ui/core";
-import { ChangeEvent, SetStateAction, useEffect } from "react";
+import { ChangeEvent, FormEvent, SetStateAction, useEffect } from "react";
 import Terms from "./Terms";
 import {useState} from 'react'
 import {motion} from 'framer-motion'
+import axios from 'axios'
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
+
+
+
+
+
 const Circle = ({title}: {title?:string}) => {
     return (
         <div className="rounded-full h-48 w-48 lg:h-96 lg:w-96 bg-gray-400 lg:inline col-start-2 col-end-3 row-start-3 row-end-5 justify-self-center self-end ">{title}</div>
@@ -16,22 +26,44 @@ interface FormProps {
     date:string |null  |undefined,
     time:string |null  |undefined
 }
+
+
+    
 const Form: React.FunctionComponent<FormProps> = ({form,setForm,date,time}) => {
+    const router = useRouter()
     const [terms,setTerms] = useState<boolean>(false)
+    const [submitted,setSubmitted] = useState(false)
     const [formValues,setFormValues] = useState<{
-        fullName:string, email:string,phone:string,address:string,service:string, message:string, acceptedTerms:string
+        fullName:string, email:string,phone:string,dateAndTime:string, address:string,service:string, message:string, acceptedTerms:string,
     }>({
         fullName:" ",
         email:" ",
         phone:" ",
+        dateAndTime:`${date} at ${time}`,
         address:" ",
         service:" ",
         message:" ",
         acceptedTerms:" "
     })
-    useEffect(()=> {
-        console.log(formValues)
-    },[formValues])
+
+
+    const handleSubmit = async(e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setSubmitted(true)
+        try {
+        const res = await axios.post('/api/sendEmail', formValues)
+      setTimeout(()=> {
+        if(res.status == 200) {
+            router.push('/success')
+      }else {
+          router.push('/error')
+      }
+      },3000)
+        } catch (error) {
+           console.error(error)
+        }
+        }
+        
     return ( 
         <div className="grid grid-cols-1 grid-rows-10 lg:grid-rows-5 lg:grid-cols-2 lg:h-screen min-h-screen w-full bg-greyBlack text-white">
             <div onClick={()=>{setForm(!form)}} className="row-span-1 col-span-1 justify-self-center lg:justify-self-start self-center w-fit lg:ml-20 cursor:pointer"> <ArrowLeftIcon className="text-white h-12 w-12 cursor-pointer"/> </div>
@@ -45,7 +77,11 @@ const Form: React.FunctionComponent<FormProps> = ({form,setForm,date,time}) => {
             </div>
 
             <div className="w-full h-full lg:col-start-2 row-start-6 row-end-11 lg:row-start-2 lg:row-end-6  text-gray-400 p-4 lg:p-12 grid place-items-center">
-                <form className="grid grid-rows-7  h-full  lg:w-3/4 place-items-center ">
+                {
+                   submitted ? 
+                   <ClimbingBoxLoader size={40} color="#EA4F1B"/>
+                   :
+                   <form onSubmit={handleSubmit} className="grid grid-rows-7  h-full  lg:w-3/4 place-items-center ">
                     <Input onChange={(e:ChangeEvent<HTMLInputElement>)=>{setFormValues({...formValues,fullName:e.target.value})}} type="text" required placeholder="full name" tone={"transparent"} withRing={false} className="rounded-none border-x-0 border-t-0 border-b-2 border-gray-400 text-white" />
                     <div className="w-full flex justify-between items-center">
                     <Input onChange={(e:ChangeEvent<HTMLInputElement>)=>{setFormValues({...formValues,email:e.target.value})}} type="email" required placeholder="email" tone={"transparent"} withRing={false} className=" w-[45%] rounded-none border-x-0 border-t-0 border-b-2 border-gray-400 text-white" />
@@ -70,7 +106,8 @@ const Form: React.FunctionComponent<FormProps> = ({form,setForm,date,time}) => {
                  <button className=" justify-self-center lg:justify-self-end"><ArrowRightIcon className="text-white h-12 w-12"/></button>
              
                   
-                </form>
+                </form> 
+                }
             </div>
             {terms? <Terms terms={terms} setTerms={setTerms}/> : ''}
 

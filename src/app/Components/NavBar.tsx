@@ -51,7 +51,7 @@ const menuItem = {
 
 
 
-const NavBar = ({scroll}: {scroll:number}) => {
+const NavBar = ({scroll,darkThreshold}: {scroll:number,darkThreshold:number}) => {
     const [nav,setNav] = useState<boolean>(false)
 
     
@@ -70,8 +70,8 @@ const NavBarItem = ({title,scroll,number}:{title:string, scroll:string,number:st
 
     const Menu=() => {
         return (
-            <motion.div variants={menuContainer} initial="initial" animate="animate" exit="exit" key="menu" className="fixed touch-none top-0 right-0 w-screen lg:w-[50vw] overflow-hidden bg-greyBlack text-white grid grid-rows-6 h-screen">
-            <span className="row-start-1 row-end-1 justify-self-center self-center" onClick={()=> {setNav(!nav)}}><XMarkIcon onClick={()=>{document.body.style.overflowY="auto"}} className="text-white h-12 w-12 cursor-pointer" /></span>
+            <motion.div variants={menuContainer} initial="initial" animate="animate" exit="exit" key="menu" className="fixed touch-none top-0 right-0 w-screen lg:w-[50vw] overflow-hidden bg-[#222222] text-white grid grid-rows-6 h-screen z-50">
+            <span className="row-start-1 row-end-1 justify-self-center self-center" onClick={()=> {setNav(!nav); document.body.style.overflowY="auto"}}><XMarkIcon className="text-white h-12 w-12 cursor-pointer" /></span>
                 <div className="flex flex-col items-center justify-around row-start-2 row-end-5 w-full h-full">
                 <NavBarItem title={"about"} scroll={"#about"} number={"(01)"}/>
                 <NavBarItem title={"services"} scroll={"#services"} number={"(02)"}/>
@@ -79,7 +79,7 @@ const NavBarItem = ({title,scroll,number}:{title:string, scroll:string,number:st
                 <NavBarItem title={"contact"} scroll={"#contact"} number={"(04)"}/>
                 </div>
                 <div className="row-start-5 row-end-6 w-full h-full flex justify-center items-center">
-                <h3 className="text-xl lg:text-3xl">harrypotter@gmail.com</h3>
+                <h3 className="text-xl lg:text-3xl">Betterhomeservices101@gmail.com</h3>
                 </div>
 
                 <div className="grid grid-cols-3 row-start-6 row-end-7 items-end justify-items-center pb-4 ">
@@ -109,7 +109,7 @@ const NavBarItem = ({title,scroll,number}:{title:string, scroll:string,number:st
          ""
          }
         </AnimatePresence>
-        <span className="mr-8" onClick={()=> {setNav(!nav); document.body.style.overflowY="hidden"}}><Bars3Icon  className={`${(scroll > .5) ? "text-white" : "text-black"} h-12 w-12 cursor-pointer `}/></span>
+        <span className="mr-8" onClick={()=> {setNav(!nav); document.body.style.overflowY="hidden"}}><Bars3Icon  className={`${(scroll > darkThreshold) ? "text-white" : "text-black"} h-12 w-12 cursor-pointer `}/></span>
     </div>
 
         </div>

@@ -31,7 +31,7 @@ const TeamMemberComponent = ({imgSrc,name,description}: {imgSrc:StaticImageData,
        animate={{x:-10}}
        transition={{repeatType:"reverse", duration:5,repeat:Infinity}}
        onClick={()=>{setIntro(!intro)}} className="flex flex-col justify-start items-start gap-4 cursor-pointer">
-       <div className="h-full w-96 flex flex-col rounded-3xl overflow-hidden ">
+       <div className="h-full w-72 xl:w-96 flex flex-col rounded-3xl overflow-hidden ">
        <Image alt={`Team Member ${name} w-full h-full object-cover`} src={imgSrc}/>
        </div>
        <div className={`flex items-center justify-center gap-4 ${playfair.className} `}>
@@ -52,7 +52,7 @@ const Team = () => {
    const Circle = ({title}: {title?:string}) => {
     return (
         <motion.div
-   
+        whileHover={{scale:1.2}}
         layoutId="testimonials"
         onClick={()=> {setTestimonials(!testimonials)}} 
         className="rounded-full h-48 w-48 cursor-pointer bg-white text-black flex items-center justify-center  justify-self-center ">{title}</motion.div>
