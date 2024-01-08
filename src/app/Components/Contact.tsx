@@ -7,7 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 const Contact = () => {
     const [loading,setLoading ] = useState<boolean>(false)
     return (
-        <div id="contact"  className="grid grid-rows-5 lg:h-screen min-h-screen place-items-center bg-greyBlack text-white w-full">
+        <div id="contact"  className="grid place-items-center h-screen">
 
         <div className="row-start-1 row-end-2 col-start-1 col-end-2 border-b-2 border-b-gray-400 h-full w-full"></div>
         <div className="flex flex-col items-start justify-center lg:w-3/4  row-start-1 row-end-2 col-start-1 col-end-2 ">
@@ -15,19 +15,13 @@ const Contact = () => {
         <h3 className="text-7xl">contact</h3>
         </div>
 
-        <div className="row-start-2 row-end-6 flex flex-col lg:flex-row justify-around items-center  w-4/5 h-full ">
-        <div className="flex flex-col items-center lg:items-start justify-start gap-12 text-3xl text-center lg:text-left">
-            <h3>123 Diamond Lane </h3>
-            <h3>Marlboro, New Jersey</h3>
-            <h3>000-000-0000</h3>
-            <h3>harrypotter@gmail.com</h3>
-        </div>
+       
         
        {loading ?  
        <ClipLoader size={40} color={"#EA4F1B"}/>
     :
     <Link onClick={()=> {setLoading(!loading)}} href='/contact'>
-    <motion.div whileHover={{scale:1.2}} className="cursor-pointer rounded-full w-48 h-48 lg:w-96 lg:h-96 bg-white text-black flex items-center justify-center">
+    <motion.div whileHover={{scale:1.2}} className="cursor-pointer rounded-full w-96 h-96 bg-white text-black flex items-center justify-center">
  
     <p>get a quote</p>
     
@@ -36,7 +30,7 @@ const Contact = () => {
     }
        
 
-        </div>
+     
 
         </div>
     )
