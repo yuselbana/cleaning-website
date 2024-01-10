@@ -1,14 +1,14 @@
 'use client';
 import Image, { StaticImageData } from "next/image"
-import { imageArr } from "../data/PortfolioData"
 import {motion} from 'framer-motion'
 import { MutableRefObject, SetStateAction,useEffect,useState } from "react"
 import ClipLoader from "react-spinners/ClipLoader";
+import axios from "axios";
 
 
 
 
-const ImageComponent = ({img,revealImages}:{img:StaticImageData,revealImages:boolean}) => {
+const ImageComponent = ({img}:{img:StaticImageData}) => {
     
 
     return (
@@ -35,15 +35,17 @@ const Portfolio = ({portfolio,setPortfolio}:{portfolio:boolean,setPortfolio:Reac
 
 
 
-    const [revealImages,setRevealImages] = useState(false)
+    const [images,setImages] = useState<{image:StaticImageData}[]>();
+    const [loading,setLoading] = useState<boolean>(true);
 
         useEffect(()=> {
-            
-    setTimeout(()=> {
-        setRevealImages(!revealImages)
-    },2000)
-
-    },[portfolio])
+            getImages();
+    },[])
+    const getImages = async() => {
+        const data =await axios.get("/api/getPortfolio");
+        const images = await data.data;
+        setImages(images);
+    }
   
     return (
         <motion.div 
@@ -61,11 +63,14 @@ const Portfolio = ({portfolio,setPortfolio}:{portfolio:boolean,setPortfolio:Reac
 
            
         <div className="grid h-full row-start-2 lg:row-start-3 row-end-9 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4  p-4 ">
-            {revealImages ? (imageArr.map((img,key)=> {
+
+            {!images && loading ? <ClipLoader className=" col-span-full row-span-full self-start justify-self-center mt-8" size={80} color="#000000"/> : '' }
+            {images?.map((img,key)=> {
                 return (
-                    <ImageComponent revealImages={revealImages} key={key} img={img.image}/>
+                    <ImageComponent key={key} img={img.image}/>
                 )
-            })) : <ClipLoader className="justify-self-center self-start" size={80} color="black"/>}
+            }) }
+          
         </div>
 
 
