@@ -31,7 +31,7 @@ const Contact = () => {
        
 
      
-
+        <span>licensed and insured by <Link target="_blank" className="text-brightOrange" href="https://coterieinsurance.com/">Corterie Insurance</Link></span>
         </div>
     )
 }

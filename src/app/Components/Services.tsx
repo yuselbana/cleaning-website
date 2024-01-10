@@ -4,6 +4,7 @@ import carpetCleaning from '../../../public/services/carpetCleaning.jpg'
 import deepCleaning from '../../../public/services/deepCleaning.jpg' 
 import garageCleaning from '../../../public/services/garageCleaning.jpg' 
 import regularCleaning from '../../../public/services/regularCleaning.jpg' 
+import commercialCleaning from '../../../public/services/commercialCleaning.jpg' 
 import { useState,useEffect,useRef } from "react";
 import {motion} from 'framer-motion'
 import { useInView } from "framer-motion";
@@ -41,7 +42,8 @@ const serviceObj= [
     {title:'regular cleaning', description:"A Regular Cleaning provides our clients with speedy performance allowing us to take care of the basic amenities in the home. Cleaning and Disinfecting the living rooms, kitchens, bedrooms, bathrooms while dusting every corner. Cleaning Hardwood Flooring while also vacuuming carpets, rugs and cleaning windows. Organizing every room and arranging it in the style you want it.  Whether you need to save time or have a family gathering this is what you're definitely  looking for. " ,image:regularCleaning},
     {title:'carpet/steam cleaning', description:"Carpets need to be deep cleaned almost once every six months and with that we provide our own carpet cleaner incorporated with scented detergent to break down old dirt and bacteria that is seeped within carpeting. But, with those that carry babies and are sensitive to smells we also provide steam cleaning. 100% eco friendly option, steam cleaning is water at high temperatures that get rid of all bacteria in carpets and break down any dirt or grout." ,image:carpetCleaning},
     {title:'deep cleaning', description:"Deep Cleaning happens usually once a year either yourself or Better Home Services will spend hours in your home moving furniture and dusting everything from the ceiling to that hard to reach spot in your pantry. Cleaning and Disinfecting every room while vacuuming and cleaning hardwood flooring. Focusing on windows getting on top of refrigerators, opening windows and cleaning the grout on tile flooring. Even on top of cabinets. Basically take a regular cleaning and double it.  YOU NAME IT WE DO IT. ", image:deepCleaning},
-    {title:'garage cleaning', description:"Let me guess... your garage looks like a storage unit with clutter and bugs and has been neglected for years. Let's bring back that garage you had when you bought your home. Decluttering your garage getting rid of cobwebs and bugs. Take away anything you don't need and making it somewhere you can store your car or even have time for yourself." ,image:garageCleaning}
+    {title:'garage cleaning', description:"Let me guess... your garage looks like a storage unit with clutter and bugs and has been neglected for years. Let's bring back that garage you had when you bought your home. Decluttering your garage getting rid of cobwebs and bugs. Take away anything you don't need and making it somewhere you can store your car or even have time for yourself." ,image:garageCleaning},
+    {title:'commercial cleaning', description:"We specialize in office spaces, apartment complexes and even commercial buildings that require a recurring cleaning most likely once or twice in a month. This niche is fitted to our company considering that we currently have contracts with multiple commercial projects in upper New Jersey that allow us to come in with our team and get the job done no matter the task, catered to whoever we are serving. Our expectations go above and beyond when meeting the requirements for the people we do business with. This includes buffing floors at the end of the day, vacuuming carpets and other upholstery, cleaning and disinfecting any countertops and bathrooms. Post construction cleaning is a task we also provide helping out homes and places that have been refurbished. " ,image:commercialCleaning}
 ]
 
 const Services = ({container}:{container:{}}) => {
@@ -85,6 +87,7 @@ const Services = ({container}:{container:{}}) => {
             <ServiceRow title={"carpet/steam cleaning"} number={'(ii)'}/>
             <ServiceRow title={"deep cleaning"} number={'(iii)'}/>
             <ServiceRow title={"garage cleaning"} number={'(iv)'}/>
+            <ServiceRow title={"commercial cleaning"} number={'(v)'}/>
             </div>
 
 

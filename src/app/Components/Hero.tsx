@@ -7,7 +7,7 @@ import Link from "next/link"
 
 const Circle = ({title}: {title?:string}) => {
     return (
-        <Link className="self-center "    href="#contact" >
+        <Link className="self-center" href="#contact" >
         <motion.div
      className="rounded-full h-48 w-48 cursor-pointer   bg-black text-white items-center justify-center flex "
        whileHover={{scale:1.2}}
