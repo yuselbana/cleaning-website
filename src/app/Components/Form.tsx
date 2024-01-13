@@ -52,13 +52,22 @@ const Form: React.FunctionComponent<FormProps> = ({form,setForm,date,time}) => {
         setSubmitted(true)
         try {
         const res = await axios.post('/api/sendEmail', formValues)
-      setTimeout(()=> {
-        if(res.status == 200) {
-            router.push('/success')
-      }else {
-          router.push('/error')
+     
+        setTimeout(async ()=> {
+            if(res.status == 200) {
+            const resRest = await axios.post('/api/restEmailResponse',{email:formValues.email, fullName:formValues.fullName});
+            if(resRest.status ==200) {
+                router.push('/success')
+            }else {
+                router.push('/error')
+            }
       }
-      },3000)
+        },2000)
+ 
+
+
+
+
         } catch (error) {
            console.error(error)
         }

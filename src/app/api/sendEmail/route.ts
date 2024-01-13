@@ -15,7 +15,7 @@ export async function POST(req:NextRequest,res:NextResponse) {
     <strong>Message</strong>: <span>${body.message}</span><br/><br/>
     <strong>Accepted Terms</strong>: <span>${body.acceptedTerms}</span>
     `
-    const subject = 'A Better Cleaning Service Client Inquiry'
+    const subject = 'A Better Cleaning Home Client Inquiry'
 
 
 

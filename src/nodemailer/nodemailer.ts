@@ -14,3 +14,4 @@ export const mailOptions = {
     from:process.env.NODEMAILER_USER,
     to:process.env.NODEMAILER_USER
 }
+
